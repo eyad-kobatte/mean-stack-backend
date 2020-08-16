@@ -1,10 +1,10 @@
-const http = require('http');
+const express = require('express');
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
+const app = express();
+
+app.get('/', (req, res) => {
   const data = { name: 'Eyad' };
-  res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(data));
 });
 
-server.listen(3000);
+app.listen(3000);
