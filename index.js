@@ -27,4 +27,5 @@ app.post('/', (req, res) => {
   }
 });
 
-app.listen(3000);
+// Heroku listens on environment variable PORT automatically. They set this up internally
+app.listen(process.env.PORT || 3000);
