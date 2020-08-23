@@ -4,7 +4,10 @@ const app = express();
 app.use(express.json());
 
 function validateUsernameAndPassword(username, password) {
-  return user;
+  return {
+    username: username,
+    password: password,
+  };
 }
 
 app.get('/', (req, res) => {
