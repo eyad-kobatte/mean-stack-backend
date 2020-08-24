@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 
 const app = express();
@@ -28,4 +29,4 @@ app.post('/', (req, res) => {
 });
 
 // Heroku listens on environment variable PORT automatically. They set this up internally
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT);
