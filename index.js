@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(express.json());
@@ -7,8 +8,23 @@ app.use(express.json());
 function validateEmailAndPassword(email, password) {
   return {
     email: email,
-    password: password,
+    firstName: '',
+    lastName: '',
+    age: 24,
+    hobbies: [''],
   };
+}
+
+function createJWT(payload) {
+  const exp = new Date();
+  exp.setMinutes(exp.getMinutes() + 1);
+  payload.exp = exp.getTime();
+
+  // We use RS256 because our keys are RSA keys. This would change depending on what keys were used
+  const token = jwt.sign(payload, process.env.JWT_PRIVATE_KEY, {
+    algorithm: 'RS256',
+  });
+  return token;
 }
 
 app.get('/', (req, res) => {
@@ -22,7 +38,8 @@ app.post('/', (req, res) => {
   const password = req.body.password;
   const user = validateEmailAndPassword(email, password);
   if (user) {
-    res.json(user);
+    const jwt = createJWT(user);
+    res.json({ token: jwt });
   } else {
     res.status(400).json({ message: 'Invalid email or password' });
   }
