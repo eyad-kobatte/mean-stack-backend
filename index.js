@@ -3,9 +3,9 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
-function validateUsernameAndPassword(username, password) {
+function validateEmailAndPassword(email, password) {
   return {
-    username: username,
+    email: email,
     password: password,
   };
 }
@@ -17,13 +17,13 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-  const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
-  const user = validateUsernameAndPassword(username, password);
+  const user = validateEmailAndPassword(email, password);
   if (user) {
     res.json(user);
   } else {
-    res.status(400).json({ message: 'Invalid username or password' });
+    res.status(400).json({ message: 'Invalid email or password' });
   }
 });
 
