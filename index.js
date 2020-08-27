@@ -8,7 +8,10 @@ app.use(express.json());
 function validateEmailAndPassword(email, password) {
   return {
     email: email,
-    password: password,
+    firstName: '',
+    lastName: '',
+    age: 24,
+    hobbies: [''],
   };
 }
 
