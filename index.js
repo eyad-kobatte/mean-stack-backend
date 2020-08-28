@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
   res.json(data);
 });
 
-app.post('/', (req, res) => {
+app.post('/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const user = validateEmailAndPassword(email, password);
