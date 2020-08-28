@@ -8,9 +8,10 @@ router.post('/', async (req, res) => {
   try {
     const user = await operations.saveUser(req.body);
     res.json(user);
+    return next;
   } catch (error) {
     console.error('Failed to create new user', error.message);
-    res.status(500).json({ message: error.message });
+    return next(error);
   }
 });
 
