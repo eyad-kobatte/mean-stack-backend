@@ -6,6 +6,8 @@ const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const usersRouter = require('./routes/users');
 
+const jwtVerificationMiddleware = require('./middlewares/jwt-verification');
+
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -28,7 +30,7 @@ app.use(express.json());
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
-app.use('/users', usersRouter);
+app.use('/users', jwtVerificationMiddleware, usersRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   res.status(error.statusCode || 500).json({ error: error.message });
