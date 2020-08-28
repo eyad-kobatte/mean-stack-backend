@@ -27,6 +27,3 @@ app.use(express.json());
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
-
-// Heroku listens on environment variable PORT automatically. They set this up internally
-app.listen(process.env.PORT);
