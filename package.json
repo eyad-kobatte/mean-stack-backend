@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "export JWT_PRIVATE_KEY=`cat secrets/private.pem` && nodemon index.js"
+    "dev": "export JWT_PRIVATE_KEY=`cat secrets/private.pem` && export JWT_PUBLIC_KEY=`cat secrets/public.pem` && nodemon index.js"
   },
   "keywords": [],
   "author": "",
