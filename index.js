@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
@@ -27,6 +28,13 @@ mongoose
 
 const app = express();
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: ['http://localhost:4200', 'https://codewithcoffee.netlify.app'],
+    credentials: true, // needed for jwt headers
+  })
+);
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
