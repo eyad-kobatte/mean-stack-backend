@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
+const usersRouter = require('./routes/users');
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -27,3 +28,4 @@ app.use(express.json());
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
+app.use('/users', usersRouter);
