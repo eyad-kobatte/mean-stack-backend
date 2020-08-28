@@ -1,8 +1,10 @@
 const jwt = require('jsonwebtoken');
 
+const HTTPError = require('../errors/http-error');
+
 function verifyJWT(req, res, next) {
   if (!req.headers.authorization) {
-    return next(new Error('No JWT Found'));
+    return next(new HTTPError('No JWT Found', 403));
   }
   try {
     const user = jwt.verify(
