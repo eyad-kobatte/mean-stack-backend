@@ -29,3 +29,7 @@ app.use(express.json());
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/users', usersRouter);
+
+app.use(function errorHandler(error, req, res, next) {
+  res.status(error.statusCode || 500).json({ error: error.message });
+});
